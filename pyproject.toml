@@ -1,0 +1,24 @@
+[project]
+name = "alpha-klima-notebooks"
+version = "0.1.0"
+description = "Sandbox notebooks for prototyping tools and validating the alpha-klima public API."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyterlab>=4",
+    "pandas",
+    "numpy",
+    "geopandas",
+    "shapely",
+    "plotly",
+    "requests",
+    "python-dotenv",
+    "openpyxl",
+    "s3fs",
+    "google-auth-oauthlib>=1.4.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+]

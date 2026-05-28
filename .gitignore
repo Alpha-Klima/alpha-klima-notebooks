@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# uv / venv
+.venv/
+.python-version
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Env
+*.env
+*.env.local
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+
+#outputs
+downloaded_results/
+bank_results.zip

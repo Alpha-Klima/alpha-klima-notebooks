@@ -1,0 +1,13 @@
+id,asset_id,name,asset_class,type,location,latitude,longitude,country,value
+0,1,Ourense 1,RealEstateAsset,Buildings/Industrial,Europe,42.34529834588722,-7.893056283223914,ES,1773000.0
+1,2,Ourense 2,RealEstateAsset,Buildings/Industrial,Europe,42.304358947568126,-7.8468855059599365,ES,1862000.0
+2,3,Palencia 1,RealEstateAsset,Buildings/Industrial,Europe,42.0176844073024,-4.555005758850625,ES,2059000.0
+3,4,Venta de Baños 1,RealEstateAsset,Buildings/Industrial,Europe,41.92060109265221,-4.483257410209126,ES,1188000.0
+4,5,Venta de Baños 2,RealEstateAsset,Buildings/Industrial,Europe,41.9145299670272,-4.491720084548867,ES,2475000.0
+5,6,Cubillas de Cerrato 1,RealEstateAsset,Buildings/Industrial,Europe,41.802881193312984,-4.474942747584212,ES,3665000.0
+6,7,Roquetas de Mar 1,RealEstateAsset,Buildings/Industrial,Europe,36.75601350740171,-2.622427307406821,ES,262000.0
+7,8,Roquetas de Mar 2,RealEstateAsset,Buildings/Industrial,Europe,36.78373882444135,-2.62237691226496,ES,2686000.0
+8,9,Roquetas de Mar 3,RealEstateAsset,Buildings/Industrial,Europe,36.712403760269645,-2.6394183763548136,ES,2297000.0
+9,10,Almería 1,RealEstateAsset,Buildings/Industrial,Europe,36.85517444539087,-2.41861536494514,ES,2489000.0
+10,11,Almería 2,RealEstateAsset,Buildings/Industrial,Europe,36.823396408140695,-2.42111227916266,ES,1291000.0
+11,12,Almería 3,RealEstateAsset,Buildings/Industrial,Europe,36.82651215412704,-2.292353578146692,ES,2157000.0
