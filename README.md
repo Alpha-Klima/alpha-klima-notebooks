@@ -11,6 +11,8 @@ Example notebooks demonstrating the [Alpha-Klima](https://platform.alpha-klima.c
 | [`asset_impact.ipynb`](notebooks/asset_impact.ipynb) | Per-asset impact distributions across hazards and scenarios. |
 | [`RealEstateExercise.ipynb`](notebooks/RealEstateExercise.ipynb) | End-to-end physical-risk workflow on a real-estate portfolio. |
 | [`bank_pipeline.ipynb`](notebooks/bank_pipeline.ipynb) | Bank pipeline run producing Pillar 3 and ECB physical-risk indicators. |
+| [`parkings_multihazard_demo.ipynb`](notebooks/parkings_multihazard_demo.ipynb) | Multi-hazard screening then flood and heat pricing for a Seville car-park portfolio. |
+| [`waste_facility_multihazard_demo.ipynb`](notebooks/waste_facility_multihazard_demo.ipynb) | Multi-hazard screening then flood, wind, and heat pricing for EU waste facilities. |
 
 ## Setup
 
