@@ -24,3 +24,4 @@ Thumbs.db
 #outputs
 downloaded_results/
 bank_results.zip
+notebooks/demo_outputs*/
