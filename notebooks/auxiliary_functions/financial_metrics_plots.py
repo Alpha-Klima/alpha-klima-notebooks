@@ -11,8 +11,8 @@ from collections import defaultdict
 from collections.abc import Mapping, Sequence
 from typing import Any
 
-import numpy as np
 import plotly.graph_objects as go
+from requests.models import Response
 
 
 # Scenario aliases share colors so equivalent transition pathways are displayed
@@ -73,7 +73,9 @@ SCENARIO_ORDER = [
 
 TERM_ORDER = ["historical", "short", "st", "middle", "long", "lt"]
 
-SCENARIO_ORDER_INDEX = {scenario: index for index, scenario in enumerate(SCENARIO_ORDER)}
+SCENARIO_ORDER_INDEX = {
+    scenario: index for index, scenario in enumerate(SCENARIO_ORDER)
+}
 TERM_ORDER_INDEX = {term: index for index, term in enumerate(TERM_ORDER)}
 
 SCENARIO_LABELS = {
@@ -111,86 +113,8 @@ TERM_LABELS = {
 DEFAULT_SCENARIO_COLOR = "hsl(220, 13%, 52%)"
 
 
-def _trapezoid(y: Sequence[float], x: Sequence[float]) -> float:
-    """Trapezoidal integral of y over x (numpy>=2 dropped ``np.trapz``)."""
-
-    y_arr, x_arr = np.asarray(y, float), np.asarray(x, float)
-    return float(np.sum((y_arr[:-1] + y_arr[1:]) / 2 * np.diff(x_arr)))
-
-
-def var_es(
-    exceed_probs: Sequence[float],
-    losses: Sequence[float],
-    confidences: Sequence[float] = (0.95, 0.99, 0.995),
-) -> dict[float, tuple[float, float]]:
-    """Value-at-Risk and Expected Shortfall from a loss-exceedance curve.
-
-    The asset impact endpoint returns, per asset, an ``impact_exceedance`` curve: loss values against
-    the annual probability of exceeding them. This derives the tail metrics from that curve, so the
-    notebooks do not need the stateful financial pipeline.
-
-    Parameters
-    ----------
-    exceed_probs:
-        Annual exceedance probabilities.
-    losses:
-        Loss at each exceedance probability, in currency units (i.e. already scaled by the value base).
-    confidences:
-        Confidence levels, e.g. ``0.99`` for the 1-in-100-year loss.
-
-    Returns
-    -------
-    dict
-        ``{confidence: (VaR, ES)}``. ``VaR`` is the loss exceeded with annual probability ``1 - c``;
-        ``ES`` is the mean loss over that worst ``1 - c`` tail, so ``ES >= VaR`` always.
-    """
-
-    probs, values = np.asarray(exceed_probs, float), np.asarray(losses, float)
-    order = np.argsort(probs)
-    probs, values = probs[order], values[order]
-    if probs[0] > 0:  # anchor the curve at p=0 (the maximum loss)
-        probs = np.concatenate([[0.0], probs])
-        values = np.concatenate([[values[0]], values])
-
-    out: dict[float, tuple[float, float]] = {}
-    for confidence in confidences:
-        alpha = 1 - confidence
-        var = float(np.interp(alpha, probs, values))
-        grid = np.linspace(0, alpha, 101)
-        es = _trapezoid(np.interp(grid, probs, values), grid) / alpha
-        out[confidence] = (var, es)
-    return out
-
-
-def metrics_response(
-    values_by_scenario: Mapping[str, Mapping[float, float]],
-    *,
-    term: str = "long",
-    metric: str = "VaR [€]",
-) -> dict[str, Any]:
-    """Shape ``{scenario: {confidence: value}}`` into the response ``plot_var``/``plot_es`` consume.
-
-    Use it to plot locally derived metrics (see :func:`var_es`) with the same helpers used for the
-    platform's stateful pipeline output. Both ``plot_var`` and ``plot_es`` read the ``"VaR [€]"``
-    metric, so pass VaR values for the VaR chart and ES values for the ES chart.
-    """
-
-    curves = [
-        {
-            "metric": metric,
-            "scenario_name": scenario,
-            "term": term,
-            "percentile": confidence * 100,
-            "value": value,
-        }
-        for scenario, per_confidence in values_by_scenario.items()
-        for confidence, value in per_confidence.items()
-    ]
-    return {"portfolio_level_metrics": curves}
-
-
 def plot_exceedance_curves(
-    response: Mapping[str, Any],
+    response: Response,
     *,
     name: str = "Cluster/Portfolio",
     selected_term: str | None = None,
@@ -214,8 +138,9 @@ def plot_exceedance_curves(
     go.Figure
         Plotly figure with one line per available scenario.
     """
+    response_json: list = response.json()
 
-    curves = response.get("exceedance_curves", [])
+    curves = response_json
     term = selected_term or first_display_term(curves)
     chart_data = transform_exceedance_curves(curves, term=term)
     scenario_config = build_scenario_config(
@@ -275,7 +200,9 @@ def filter_curves(
         curve_term = str(curve.get("term") or "")
         normalized_curve_term = curve_term.lower()
         scenario = scenario_key(curve)
-        is_historical = normalized_curve_term == "historical" or scenario == "historical"
+        is_historical = (
+            normalized_curve_term == "historical" or scenario == "historical"
+        )
         term_matches = True
 
         if normalized_term:
@@ -328,7 +255,9 @@ def transform_exceedance_curves(
     for probability in probabilities_sorted:
         key = normalize_probability_key(probability)
         row: dict[str, float | None] = {"probability": probability}
-        for curve, probability_map in zip(filtered, curve_probability_maps, strict=True):
+        for curve, probability_map in zip(
+            filtered, curve_probability_maps, strict=True
+        ):
             scenario = scenario_key(curve)
             if scenario:
                 row[scenario] = probability_map.get(key)
@@ -338,7 +267,7 @@ def transform_exceedance_curves(
 
 
 def plot_var(
-    response: Mapping[str, Any],
+    response: Response,
     *,
     name: str = "Cluster/Portfolio",
     selected_term: str | None = None,
@@ -349,8 +278,9 @@ def plot_var(
     The function accepts either cluster-level or portfolio-level metric payloads
     and preserves the original response shape expected by the notebook.
     """
+    response_json: list = response.json()
 
-    curves = metric_curves(response)
+    curves = response_json  # metric_curves(response)
     term = selected_term or first_display_term(curves)
     chart_data = transform_var(curves, term=term)
     scenario_config = build_scenario_config(
@@ -398,7 +328,7 @@ def transform_var(
 
 
 def plot_es(
-    response: Mapping[str, Any],
+    response: Response,
     *,
     name: str = "Cluster/Portfolio",
     selected_term: str | None = None,
@@ -409,8 +339,9 @@ def plot_es(
     The input handling mirrors ``plot_var`` so cluster and portfolio metric
     payloads can be passed directly from the notebook.
     """
+    response_json: list = response.json()
 
-    curves = metric_curves(response)
+    curves = response_json  # metric_curves(response)
     term = selected_term or first_display_term(curves)
     chart_data = transform_es(curves, term=term)
     scenario_config = build_scenario_config(
@@ -449,7 +380,7 @@ def transform_es(
 
     rows = defaultdict(lambda: defaultdict(list))
     for curve in filtered:
-        if curve["metric"] == "VaR [€]":
+        if curve["metric"] == "ES [€]":
             scenario = scenario_key(curve)
             rows[scenario]["percentiles"].append(curve["percentile"])
             rows[scenario]["values"].append(curve["value"])
@@ -506,13 +437,13 @@ def build_scenario_config(
     }
 
 
-def metric_curves(response: Mapping[str, Any]) -> Sequence[Mapping[str, Any]]:
-    """Return cluster-level metrics, falling back to portfolio-level metrics."""
-
-    curves = response.get("cluster_level_metrics", [])
-    if not curves:
-        curves = response.get("portfolio_level_metrics", [])
-    return curves
+# def metric_curves(response: Response) -> Sequence[Mapping[str, Any]]:
+#     """Return cluster-level metrics, falling back to portfolio-level metrics."""
+#     response_json = response.json()
+#     curves = response.get("cluster_level_metrics", [])
+#     if not curves:
+#         curves = response.get("portfolio_level_metrics", [])
+#     return curves
 
 
 def add_metric_bars(

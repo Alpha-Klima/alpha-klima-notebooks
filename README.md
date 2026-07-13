@@ -1,6 +1,6 @@
 # alpha-klima-notebooks
 
-Example notebooks demonstrating the [Alpha-Klima](https://platform.alpha-klima.com) climate-risk API. Each notebook walks through a complete workflow against the platform — from authentication to result visualization — using small synthetic portfolios.
+Example notebooks demonstrating [Alpha-Klima](https://platform.alpha-klima.com)'s climate-risk API. Each notebook walks through a complete workflow against the platform — from authentication to result visualization — using small synthetic portfolios.
 
 ## Notebooks
 
@@ -16,24 +16,33 @@ Example notebooks demonstrating the [Alpha-Klima](https://platform.alpha-klima.c
 
 ## Setup
 
-Requires [uv](https://docs.astral.sh/uv/) and Python 3.12.
+We recommend using [uv](https://docs.astral.sh/uv/) for installation.
+Run
 
 ```bash
 uv sync
 ```
 
-Open the notebooks under `notebooks/` in VS Code and select the `.venv` interpreter.
+to install all necessary dependencies in a local virtual environment (`.venv`). Then, open the notebooks under `notebooks/` in your preferred editor or IDE and select the `.venv` interpreter.
 
 ## API credentials
 
-The notebooks call the Alpha-Klima API and require an API key. Copy `.env.example` to `.env` and fill in your key:
+The notebooks call the Alpha-Klima API and require an API key.
+
+To obtain an API key you need to:
+1. Register at https://platform.alpha-klima.com or get invited to an existing organization.
+1. Generate API keys from the API keys tab of the user menu. Note that only members of the organization with owner privileges can issue API keys.
+
+Then, copy `.env.example` to `.env` and fill in your key:
 
 ```
 ALPHA_KLIMA_API_BASE_URL=https://platform.alpha-klima.com/prapi
 ALPHA_KLIMA_API_KEY=<your-key>
 ```
 
-Contact the Alpha-Klima team to be issued an API key for these notebooks.
+Note that for the API key to work, the organization must have an active Quota.
+The Quota determines the usage limits of the Alpha-Klima platform.
+Email us at [contact@alpha-klima.com](contact@alpha-klima.com) to set up a Quota.
 
 ## Layout
 
