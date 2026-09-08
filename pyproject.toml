@@ -16,9 +16,13 @@ dependencies = [
     "openpyxl",
     "s3fs",
     "google-auth-oauthlib>=1.4.0",
+    "ipykernel>=7.2.0",
+    "kaleido>=1.3.0",
 ]
 
 [dependency-groups]
 dev = [
     "ruff",
+    "scipy",
 ]
+

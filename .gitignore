@@ -19,9 +19,8 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
-.claude/
 
 #outputs
 downloaded_results/
 bank_results.zip
-notebooks/demo_outputs*/
+demo_outputs*/

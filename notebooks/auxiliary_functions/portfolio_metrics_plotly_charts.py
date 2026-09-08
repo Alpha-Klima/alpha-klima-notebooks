@@ -552,7 +552,7 @@ if __name__ == "__main__":
     SCRIPT_DIR = Path(__file__).resolve().parent
     PROJECT_DIR = SCRIPT_DIR.parent
     DEFAULT_RESULTS_DIR = PROJECT_DIR / "downloaded_results" / "2026-05-18"
-    PORTFOLIO_METRICS_PATH = DEFAULT_RESULTS_DIR / "portfolio_metrics_Arfima.xlsx"
+    PORTFOLIO_METRICS_PATH = DEFAULT_RESULTS_DIR / "portfolio_metrics.xlsx"
     PORTFOLIO_ASSET_PATH = DEFAULT_RESULTS_DIR / "portfolio_asset.txt"
 
 

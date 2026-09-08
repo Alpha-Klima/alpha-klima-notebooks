@@ -24,11 +24,12 @@
       "number_of_storeys": 2,
       "basement": 6,
       "first_floor_height": 0.5,
-      "value": 45000000,
+      "structure_value": 45000000,
       "contents_value": 30000000,
+      "value": 75000000,
       "floor_area_m2": 15000,
       "hazus_wind_type": "MLRI",
-      "cluster": "Gelderland (riverine)",
+      "zone": "Gelderland (riverine)",
       "group": "Waste management"
     },
     {
@@ -44,11 +45,12 @@
       "number_of_storeys": 1,
       "basement": 6,
       "first_floor_height": 0.4,
-      "value": 26000000,
+      "structure_value": 26000000,
       "contents_value": 14000000,
+      "value": 40000000,
       "floor_area_m2": 8000,
       "hazus_wind_type": "SPMBM",
-      "cluster": "Gironde (coastal + riverine)",
+      "zone": "Gironde (coastal + riverine)",
       "group": "Waste management"
     },
     {
@@ -64,11 +66,12 @@
       "number_of_storeys": 1,
       "basement": 6,
       "first_floor_height": 0.3,
-      "value": 12000000,
+      "structure_value": 12000000,
       "contents_value": 4000000,
+      "value": 16000000,
       "floor_area_m2": 4000,
       "hazus_wind_type": "SPMBM",
-      "cluster": "Veneto (wind)",
+      "zone": "Veneto (wind)",
       "group": "Waste management"
     }
   ]
