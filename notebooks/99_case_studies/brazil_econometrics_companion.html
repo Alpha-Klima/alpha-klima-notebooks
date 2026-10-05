@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brazil credit climate risk</title>
+<style>
+:root{color-scheme:light dark;--ink:#17323b;--muted:#4a5f65;--bg:#f6f7f3;--card:#fff;--line:#cbd7d5;--accent:#006a78;--soft:#e8f4f3;--warn:#8a4b00;--warn-soft:#fbf1e3}
+@media(prefers-color-scheme:dark){:root{--ink:#eaf3f1;--muted:#b7c9c6;--bg:#111c20;--card:#1c2a2f;--line:#456065;--accent:#82d7df;--soft:#203f43;--warn:#f3c27a;--warn-soft:#3a2e1c}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;overflow-x:clip;background:var(--bg);color:var(--ink);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent)}a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:auto;padding-inline:clamp(1rem,4vw,3rem)}
+main{padding-block:.5rem 5rem}
+header{padding-block:2.5rem 1.2rem}
+section{scroll-margin-top:4.5rem}
+h1{font-size:clamp(2rem,4vw,3.1rem);line-height:1.12;margin:.2rem 0 .8rem}
+h2{font-size:1.65rem;margin:3.5rem 0 1rem;border-bottom:1px solid var(--line);padding-bottom:.4rem}
+h3{font-size:1.22rem;margin:2.2rem 0 .5rem}
+p,li{max-width:78ch}
+.lede{font-size:1.13rem}.muted,small{color:var(--muted)}
+.tabs{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-block:1px solid var(--line)}
+.tabs ul{display:flex;gap:.45rem;margin-block:0;padding-block:.6rem;list-style:none;overflow-x:auto;scrollbar-width:thin}
+.tabs a{display:block;padding:.34rem .9rem;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font-size:.9rem;font-weight:550;text-decoration:none;white-space:nowrap;transition:background-color .15s,border-color .15s,color .15s}
+.tabs a:hover{border-color:var(--accent);color:var(--accent)}
+.tabs a[aria-current="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.kpis{display:flex;flex-wrap:wrap;gap:1rem;margin:1.8rem 0 1rem}
+.kpi{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:8px;padding:.9rem 1rem}
+.kpi b{display:block;font-size:clamp(1.25rem,1.9vw,1.6rem);line-height:1.15;margin-bottom:.35rem;text-wrap:balance}
+.kpi span{display:block;font-size:.9rem;line-height:1.45;color:var(--muted)}
+@media(max-width:960px){.kpi{flex-basis:calc((100% - 2rem)/3)}}
+@media(max-width:600px){.kpi{flex-basis:calc((100% - 1rem)/2)}}
+.callout{background:var(--soft);border-left:4px solid var(--accent);padding:.9rem 1.2rem;margin:1.3rem 0;max-width:none}
+.callout.warn{background:var(--warn-soft);border-left-color:var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem 1.2rem}.card h3{margin-top:0}
+.table-wrap{overflow-x:auto;margin:1rem 0 1.5rem}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:.92rem}
+caption{text-align:left;padding:0 0 .45rem;color:var(--muted);font-size:.9rem}
+th,td{padding:.5rem .7rem;border:1px solid var(--line);text-align:left;vertical-align:top}
+thead{background:var(--soft)}tbody th{white-space:nowrap}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--soft);padding:.9rem 1rem;overflow-x:auto;max-width:none}
+figure{margin:1.5rem 0;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;max-width:642px}
+figure img{display:block;width:100%;height:auto;background:#fff}
+/* Figures are rendered at twice their layout width and shown at 640 px at most, so they are
+   always scaled down. Pairs widen past the text column to fit two; below ~1000 px they stack. */
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:1rem;align-items:start;width:min(1296px,calc(100vw - 2*clamp(1rem,4vw,3rem)));position:relative;left:50%;transform:translateX(-50%);margin-block:1.5rem}
+.pair figure{margin:0}
+figcaption{padding:.75rem 1rem;font-size:.9rem}
+details{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:.7rem 1rem;margin:1rem 0}
+summary{cursor:pointer;font-weight:650}details[open] summary{margin-bottom:.5rem}
+.references li{margin:.5rem 0}
+@media print{
+:root{color-scheme:light;--ink:#17323b;--muted:#4a5f65;--bg:#fff;--card:#fff;--line:#cbd7d5;--accent:#006a78;--soft:#eef6f5;--warn:#8a4b00;--warn-soft:#fbf1e3}
+body{font-size:10.5pt;background:#fff}.tabs{display:none}.wrap{max-width:none;padding-inline:0}
+header{padding-top:0}h2{margin-top:2rem}h2,h3{break-after:avoid}
+figure,.table-wrap,.kpi,.callout,details,.card,tr{break-inside:avoid}
+figure{max-width:15cm}.pair{display:block;width:auto;left:0;transform:none}.pair figure{margin:1.2rem 0}.table-wrap{overflow:visible}a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+<p class="muted">Companion to the Brazil econometrics case study</p>
+<h1>Physical climate risk in a Brazilian credit book</h1>
+<p class="lede">A synthetic bank book of six borrowers, twelve loans and ten financed sites, followed from the physical-risk report to Banco Central do Brasil, through hazards at each site and their monetary impacts, to the capital held against the loans. The reference date is 31 December 2027, under Resolução BCB nº 586/2026.</p>
+</header>
+<nav class="tabs" aria-label="On this page"><ul class="wrap">
+<li><a href="#method">Method</a></li><li><a href="#book">Book</a></li>
+<li><a href="#crfr2">CRFR2</a></li><li><a href="#hazards">Hazards</a></li>
+<li><a href="#money">Impacts</a></li><li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#credit">Credit</a></li><li><a href="#results">Results</a></li>
+<li><a href="#sources">Sources</a></li></ul></nav>
+<main class="wrap">
+
+<div class="kpis">
+<div class="kpi"><b>R$ 290.4 M</b><span>30% of drawn exposure changes macro-region when filed at the sites</span></div>
+<div class="kpi"><b>15 cells</b><span>of the CRFR2 report change risk class between filings</span></div>
+<div class="kpi"><b>R$ 9.3 M</b><span>a year of heat productivity loss by 2050 (SSP5-8.5), 94% at three mills</span></div>
+<div class="kpi"><b>+4.0% · +1.9%</b><span>RWA change from flood in 2050 (2 borrowers) and 2080 (5), LGD unchanged</span></div>
+<div class="kpi"><b>+5% → +52%</b><span>flood effect on lifetime expected loss, today's loans vs the same loans written in 2080</span></div>
+</div>
+<div class="callout"><strong>Scope.</strong> Borrowers, sites, amounts, heights and costs are synthetic. The results are a screening exercise, not a regulatory filing, an appraisal or a validated bank model. Every figure and number below comes from the case study's current run.</div>
+
+<section id="method">
+<h2>How the exercise works</h2>
+<div class="grid">
+<div class="card"><h3>1 · Reporting location</h3><p>The same exposure is placed at borrower headquarters (<em>Nível 3</em>) and at the financed sites (<em>Nível 1</em>) in the CRFR2 report. Total lending does not change; only where it is reported.</p></div>
+<div class="card"><h3>2 · Site hazards</h3><p>Drought, water stress, flood and heat are read at each site's coordinates and set beside the AdaptaBrasil municipal index. The two measure related but different things.</p></div>
+<div class="card"><h3>3 · Money</h3><p>A hazard becomes reais only where an exposure and a vulnerability model exist: flood damage to collateral, lost working time and office cooling. The rest stays unpriced.</p></div>
+<div class="card"><h3>4 · Credit</h3><p>The change in how often a fixed flood occurs moves borrower PD, and with it expected loss and risk-weighted assets. Flood damage from step 3 is not added to this.</p></div>
+</div>
+
+<h3>Climate scenarios</h3>
+<p>Flood and warm-water data come from the CMIP5 model generation and use RCP pathways; heat and water stress come from CMIP6 and use SSPs. The exercise pairs them by comparable warming. RCP8.5 / SSP5-8.5 is the headline case and RCP4.5 / SSP2-4.5 the milder one. The CRFR2 report uses AdaptaBrasil's pessimistic scenario, which the regulation fixes.</p>
+<div class="table-wrap"><table><thead><tr><th>RCP (CMIP5)</th><th>Closest SSP (CMIP6)</th><th>Warming by 2081–2100, roughly</th></tr></thead><tbody>
+<tr><th scope="row">RCP4.5</th><td>SSP2-4.5, middle of the road</td><td>about 2.7 °C</td></tr>
+<tr><th scope="row">RCP8.5</th><td>SSP5-8.5, fossil-fuelled high emissions</td><td>about 4.4 °C</td></tr>
+</tbody></table></div>
+
+<h3>What each hazard is compared on</h3>
+<p>A climate signal is a future slice set against a baseline from the same dataset, so that the difference does not mix two simulations. A projected year stands for a period of about twenty years or more around it, not a single calendar year.</p>
+<div class="table-wrap"><table><thead><tr><th>Hazard</th><th>Source</th><th>Baseline</th><th>Compared with</th></tr></thead><tbody>
+<tr><th scope="row">CRFR2 indices</th><td>AdaptaBrasil</td><td>Present</td><td>2030, pessimistic scenario</td></tr>
+<tr><th scope="row">Drought</th><td>Alpha-Klima SPEI, ERA5-Land</td><td>Historical (2005)</td><td>Not compared</td></tr>
+<tr><th scope="row">Water stress</th><td>WRI Aqueduct 4.0</td><td>Historical (1999)</td><td>SSP5-8.5, 2030 and 2050</td></tr>
+<tr><th scope="row">River flood</th><td>WRI Aqueduct Floods, HadGEM2-ES</td><td>2030</td><td>RCP8.5, 2080</td></tr>
+<tr><th scope="row">Coastal flood</th><td>WRI Aqueduct Floods, sea-level 5th/50th/95th percentile</td><td>2030</td><td>RCP8.5 and RCP4.5, 2050 and 2080</td></tr>
+<tr><th scope="row">Heat</th><td>Alpha-Klima, OS-Climate (ACCESS-CM2)</td><td>Historical (2005)</td><td>SSP5-8.5 and SSP2-4.5, 2030 and 2050</td></tr>
+<tr><th scope="row">Warm river water</th><td>Utrecht University, HadGEM2-ES</td><td>2030</td><td>RCP8.5 and RCP4.5, 2050 and 2080</td></tr>
+</tbody></table></div>
+<p class="muted">The 2030 flood and warm-water baselines are the first projected year of each dataset, not an observed period. Some slices are left out. On HadGEM2-ES, river flood in 2050 falls below its 2030 baseline at every site, and under RCP4.5 in 2080 at some sites. Water stress has no 2080 or lower-emission series. SSP1-2.6 heat is excluded because its single-model WBGT run stays hotter than SSP5-8.5 through 2050.</p>
+</section>
+
+<section id="book">
+<h2>The book</h2>
+<p>Six borrowers draw R$ 971.1 M against R$ 1,618.5 M of collateral, with R$ 187.6 M of undrawn lines. Exposure at default (EAD) adds 40% of each undrawn line to the drawn balance. Baseline expected loss, PD × LGD × EAD, is R$ 8.87 M. PD, LGD and maturity are illustrative inputs, not calibrated estimates.</p>
+<div class="table-wrap"><table><caption>Borrowers. Amounts in R$ M. Borrower type sets the CRFR2 <em>Chuva Intensa</em> row; sector sets the <em>Seca</em> row.</caption>
+<thead><tr><th>ID</th><th>Borrower</th><th>Headquarters</th><th>Sector (CRFR2 <em>Seca</em>)</th><th>Sites</th><th>Rating</th><th class="n">PD (%)</th><th class="n">Drawn</th><th class="n">EAD</th></tr></thead><tbody>
+<tr><th scope="row">C01</th><td>Grupo Oeste Agroindustrial S.A.</td><td>Salvador, BA</td><td>Agricultura</td><td>BA3</td><td>BB</td><td class="n">1.85</td><td class="n">193.5</td><td class="n">209.0</td></tr>
+<tr><th scope="row">C02</th><td>Cerrado Grãos Trading S.A.</td><td>São Paulo, SP</td><td>Agricultura</td><td>MT1, MT5</td><td>BB+</td><td class="n">1.03</td><td class="n">238.2</td><td class="n">259.2</td></tr>
+<tr><th scope="row">C03</th><td>Rio São Francisco Alimentos Ltda.</td><td>Belo Horizonte, MG</td><td>Produtos alimentícios</td><td>AL1, MG1</td><td>BB−</td><td class="n">3.32</td><td class="n">145.2</td><td class="n">156.8</td></tr>
+<tr><th scope="row">C04</th><td>Cacau Litoral Sul Indústria Ltda.</td><td>Ilhéus, BA</td><td>Produtos alimentícios</td><td>BA5, BA6</td><td>B+</td><td class="n">5.98</td><td class="n">148.8</td><td class="n">157.7</td></tr>
+<tr><th scope="row">C05</th><td>Usina Potiguar Bioenergia S.A.</td><td>Natal, RN</td><td>Petróleo e biocombustíveis</td><td>RN1, RN2</td><td>BB−</td><td class="n">3.32</td><td class="n">167.4</td><td class="n">180.8</td></tr>
+<tr><th scope="row">C06</th><td>Antônio N. Lima (produtor rural)</td><td>Barreiras, BA</td><td>Agricultura</td><td>BA4</td><td>unrated</td><td class="n">8.80</td><td class="n">78.0</td><td class="n">82.7</td></tr>
+</tbody></table></div>
+<p>C01 to C05 are companies (<em>Pessoa Jurídica</em>); C06 is an individual rural producer (<em>Pessoa Natural</em>). LGD is about 25% for every borrower. Each borrower has two loans: a one-year <em>custeio</em> working-capital line, rolled every season, and an <em>investimento</em> term loan of 8 to 25 years (C06 8, C01 and C04 12, C02 15, C03 20, C05 25). The tenors matter when today's loans are compared with loans written later.</p>
+
+<div class="table-wrap"><table><caption>Financed sites. Values are illustrative R$ M. The height places the site's ground above the flood model's cell reference.</caption>
+<thead><tr><th>ID</th><th>Site</th><th>Municipality</th><th>Operation</th><th class="n">Ground above cell (m)</th><th class="n">Value</th><th>Hazards flagged</th></tr></thead><tbody>
+<tr><th scope="row">AL1</th><td>Armazém de Piaçabuçu</td><td>Piaçabuçu, AL</td><td>Rice drying and storage</td><td class="n">1.5</td><td class="n">87.0</td><td>coastal, river, heat, water, drought</td></tr>
+<tr><th scope="row">BA3</th><td>Usina de Beneficiamento São Desidério</td><td>São Desidério, BA</td><td>Cotton gin (mill)</td><td class="n">1.0</td><td class="n">322.5</td><td>river, heat, water</td></tr>
+<tr><th scope="row">BA4</th><td>Unidade de Armazenagem Formosa do Rio Preto</td><td>Formosa do Rio Preto, BA</td><td>Grain storage</td><td class="n">2.0</td><td class="n">130.0</td><td>river, heat, drought</td></tr>
+<tr><th scope="row">BA5</th><td>Unidade de Beneficiamento de Itagibá</td><td>Itagibá, BA</td><td>Cocoa processing (mill)</td><td class="n">7.0</td><td class="n">111.5</td><td>river, heat</td></tr>
+<tr><th scope="row">BA6</th><td>Terminal Portuário de Nova Viçosa</td><td>Nova Viçosa, BA</td><td>Port terminal and warehouse</td><td class="n">0.5</td><td class="n">136.5</td><td>coastal, heat</td></tr>
+<tr><th scope="row">MG1</th><td>Terminal Fluvial de Pirapora</td><td>Pirapora, MG</td><td>River grain terminal</td><td class="n">4.0</td><td class="n">155.0</td><td>river, heat, drought</td></tr>
+<tr><th scope="row">MT1</th><td>Terminal Graneleiro Rondonópolis</td><td>Rondonópolis, MT</td><td>Rail terminal and silos</td><td class="n">3.0</td><td class="n">279.0</td><td>heat, drought</td></tr>
+<tr><th scope="row">MT5</th><td>Centro de Distribuição Cuiabá</td><td>Cuiabá, MT</td><td>Logistics hub</td><td class="n">2.0</td><td class="n">118.0</td><td>heat, drought</td></tr>
+<tr><th scope="row">RN1</th><td>Usina Sucroalcooleira do Ceará-Mirim</td><td>Taipu, RN</td><td>Sugar and ethanol mill</td><td class="n">0.3</td><td class="n">192.0</td><td>river, heat, water, drought</td></tr>
+<tr><th scope="row">RN2</th><td>Centro Administrativo de João Câmara</td><td>João Câmara, RN</td><td>Mill control office</td><td class="n">5.0</td><td class="n">87.0</td><td>heat, water, drought</td></tr>
+</tbody></table></div>
+<p>The asset class decides which vulnerability model a site gets. The warehouses and terminals (industrial) and the three mills (manufacturing) are priced for lost working time, and the office for cooling electricity. The office has no revenue of its own.</p>
+<figure id="fig-2-3-1"><img loading="lazy" src="brazil_companion_figures/figure-2.3.1.png" alt="Map of Brazil with borrower headquarters linked to their financed sites"><figcaption><strong>Figure 2.3.1.</strong> Every borrower's sites lie in a different municipality from its headquarters. For C02 (São Paulo to Mato Grosso) and C03 (Belo Horizonte to Alagoas and Minas Gerais) they lie in a different macro-region too.</figcaption></figure>
+</section>
+
+<section id="crfr2">
+<h2>CRFR2: where exposure is reported</h2>
+<p>CRFR2 is the table of the GRSAC report in which a bank discloses its exposure to physical climate hazards by macro-region. The report is required by Resolução BCB nº 586/2026, with layouts in IN BCB nº 772. The table has two grids: <em>Seca</em> (drought), with one row per economic sector, and <em>Chuva Intensa</em> (intense rain), with one row per counterparty type. For each of the five regions a row carries gross and problematic exposure, plus a risk level for the present and for 2030. The risk level is the exposure-weighted AdaptaBrasil municipal threat index, in five classes from <em>Muito baixo</em> to <em>Muito alto</em>.</p>
+<p>Filing at headquarters is the proxy a bank can always produce, since it holds the registered address. Filing at the financed site requires the site's municipality. Multi-site exposure is split across the sites so that totals are preserved.</p>
+<figure id="fig-3-1"><img loading="lazy" src="brazil_companion_figures/figure-3.1.png" alt="Bar chart of gross and undrawn exposure by CRFR2 grid row"><figcaption><strong>Figure 3.1.</strong> The book in the rows of the two grids, summed over regions. Only filled rows are shown. No exposure is classified as problematic.</figcaption></figure>
+
+<h3>What changes</h3>
+<p>At headquarters, all exposure sits in the Nordeste and Sudeste. At the sites, C02 moves from the Sudeste to the Centro-Oeste, and C03 splits between the Nordeste (AL1) and the Sudeste (MG1). Together that is <strong>R$ 290.4 M, 30% of gross exposure, filed in another macro-region</strong>. Fifteen disclosed cells differ: nine change class within a region, and six exist in only one filing because a loan changed region.</p>
+<div class="table-wrap"><table><caption>The cells that move most. Gross exposure in R$ M, then the class for the present / 2030.</caption>
+<thead><tr><th>Grid · row</th><th>Region</th><th>At headquarters (<em>Nível 3</em>)</th><th>At the sites (<em>Nível 1</em>)</th></tr></thead><tbody>
+<tr><th scope="row">Chuva Intensa · Pessoa Jurídica</th><td>Nordeste</td><td>509.7 · Muito alto / Muito alto</td><td>561.9 · Baixo / Médio</td></tr>
+<tr><th scope="row">Chuva Intensa · Pessoa Jurídica</th><td>Sudeste</td><td>383.4 · Muito alto / Muito alto</td><td>93.0 · Médio / Médio</td></tr>
+<tr><th scope="row">Chuva Intensa · Pessoa Jurídica</th><td>Centro-Oeste</td><td>not filed</td><td>238.2 · Alto / Alto</td></tr>
+<tr><th scope="row">Chuva Intensa · Pessoa Natural</th><td>Nordeste</td><td>78.0 · Médio / Alto</td><td>78.0 · Baixo / Baixo</td></tr>
+<tr><th scope="row">Seca · Petróleo e biocombustíveis</th><td>Nordeste</td><td>167.4 · Baixo / Alto</td><td>167.4 · Médio / Muito alto</td></tr>
+<tr><th scope="row">Seca · Agricultura</th><td>Centro-Oeste</td><td>not filed</td><td>238.2 · Baixo / Alto</td></tr>
+<tr><th scope="row">Seca · Agricultura</th><td>Sudeste</td><td>238.2 · Muito baixo / Médio</td><td>not filed</td></tr>
+</tbody></table></div>
+<figure id="fig-3-3-1"><img loading="lazy" src="brazil_companion_figures/figure-3.3.1.png" alt="Paired bars of the AdaptaBrasil drought and flood indices at headquarters and at each site"><figcaption><strong>Figure 3.3.1.</strong> Intense-rain threat is lower at every site than at its headquarters. Most headquarters are in state capitals and coastal cities with high urban-flood scores. Drought threat is higher at six of the ten sites (AL1, BA4, MT1, MT5, RN1, RN2). C05's increase produces the <em>Seca</em> class changes in the Nordeste.</figcaption></figure>
+<p>These are municipal threat indices. A lower intense-rain class at a site means a lower municipal score, not that the building cannot flood. The next section reads the hazards at the coordinates.</p>
+</section>
+
+<section id="hazards">
+<h2>Hazards at the financed sites</h2>
+<p>For each hazard, a national map gives context and a scatter sets each site's reading against its municipality's AdaptaBrasil index. The pairs measure related but different quantities, so their colours and ranks need not agree. The site readings show exposure; only supported flood and heat channels feed the later calculations. AdaptaBrasil's are 0–1 scores built to rank municipalities.</p>
+<div class="table-wrap"><table><thead><tr><th>Hazard</th><th>Alpha-Klima, at the site</th><th>AdaptaBrasil, in the municipality</th></tr></thead><tbody>
+<tr><th scope="row">Drought</th><td>6-month mean SPEI at the site; national field shows the driest of the 1-, 3- and 6-month means</td><td>SPEI (5047): frequency and severity of dry spells below −0.5</td></tr>
+<tr><th scope="row">Water stress</th><td>Basin withdrawals over renewable supply</td><td>Share of dry-season supply committed to farming and industry (9), 2020</td></tr>
+<tr><th scope="row">Flood</th><td>River and coastal depth for a 1-in-100-year event</td><td>Threat index for floods, flash floods and urban flooding (60044)</td></tr>
+<tr><th scope="row">Heat</th><td>Cooling degree days</td><td>Number of heat waves (50103)</td></tr>
+</tbody></table></div>
+
+<h3 id="drought">Drought</h3>
+<p>SPEI starts with precipitation minus potential evapotranspiration, accumulated over 1, 3 or 6 months. The accumulated balance is converted to a historical percentile and then to a standard-normal score. Negative SPEI means drier than the local normal; the score is not a 0–1 probability. The site comparisons use the <strong>6-month</strong> historical mean. The national Alpha-Klima field instead takes the driest of the three window means at each grid cell and reverses its sign so that larger plotted values indicate greater dryness.</p>
+<p>Figure 4.1.1 locates the sites on the municipal index and the mixed-window national field; its site circles use that mixed-window measure. Figure 4.1.2 compares each site's 6-month reading with its municipality, both at the present. AdaptaBrasil counts dry spells below −0.5, whereas the site reading averages historical conditions; the rankings need not match.</p>
+<div class="pair">
+<figure id="fig-4-1-1"><img loading="lazy" src="brazil_companion_figures/figure-4.1.1.png" alt="Municipal drought index and mixed-window national SPEI field with site locations"><figcaption><strong>Figure 4.1.1.</strong> Municipal drought index, national field using the driest of three SPEI windows, and site circles using that same mixed-window summary.</figcaption></figure>
+<figure id="fig-4-1-2"><img loading="lazy" src="brazil_companion_figures/figure-4.1.2.png" alt="Site 6-month SPEI against municipal drought index"><figcaption><strong>Figure 4.1.2.</strong> The 6-month site reading and municipal dry-spell indicator summarise different aspects of drought.</figcaption></figure>
+</div>
+<p>SPEI is relative to local climate: the same score need not imply the same absolute water shortage at two sites. The reading does not account for soil, crops or irrigation.</p>
+
+<h3 id="water">Water stress</h3>
+<p>WRI water stress divides annual withdrawals, by irrigation, households, industry and livestock, by the renewable water reaching the sub-basin. A ratio of 0.4 means withdrawals equal four tenths of supply. WRI classes it as low (under 0.1), low–medium (0.1–0.2), medium–high (0.2–0.4), high (0.4–0.8) and extremely high (over 0.8). The ratio belongs to the whole basin, so two sites in one basin read the same number, and a site's own intake does not enter. It measures competition for water, not lack of rain: a wet, heavily irrigated basin can be stressed.</p>
+<div class="pair">
+<figure id="fig-4-2-1"><img loading="lazy" src="brazil_companion_figures/figure-4.2.1.png" alt="Water-stress maps of Brazil"><figcaption><strong>Figure 4.2.1.</strong> Water-stress maps. The WRI ratio is shown on a log scale.</figcaption></figure>
+<figure id="fig-4-2-2"><img loading="lazy" src="brazil_companion_figures/figure-4.2.2.png" alt="Scatter of site water stress against municipal water-balance indicator"><figcaption><strong>Figure 4.2.2.</strong> Six sites reach the top of AdaptaBrasil's indicator, yet WRI stress is material at only a few. AdaptaBrasil counts dry-season supply and weighs farming and industry in the local economy.</figcaption></figure>
+</div>
+<p>By 2050 under SSP5-8.5, BA3 is medium–high (0.30), and AL1, RN1 and RN2 are low–medium (0.11–0.14). The other sites stay low. AL1's ratio rises more than fourfold, from 0.024 to 0.106, which moves it only from low to low–medium: a large percentage change from a low base. No impact model converts water stress into money.</p>
+
+<h3 id="flood">Flood</h3>
+<p>The site depths are WRI Aqueduct Floods. A return period expresses annual chance: a 1-in-100-year depth has a 1% chance of being reached or exceeded in a year.</p>
+<details><summary>How the WRI flood depth is built, and what it is not</summary>
+<ol>
+<li><strong>Climate.</strong> A CMIP5 climate model (here HadGEM2-ES for the river) simulates daily weather under an RCP, bias-corrected against observed weather.</li>
+<li><strong>Hydrology.</strong> A global hydrological model turns rain and snowmelt into runoff and routes it down the river network on a ~9 km grid.</li>
+<li><strong>Extremes.</strong> An extreme-value distribution fitted to each cell's annual maximum flood gives depths for return periods from 2 to 1,000 years.</li>
+<li><strong>Channel.</strong> The river channel is assumed to carry the 2-year flood, so only water above that flow leaves it. This is why the 2-year depth is near zero at most sites.</li>
+<li><strong>Depth.</strong> The overflow is spread over ~1 km terrain, and depth is water level minus the cell's reference ground.</li>
+</ol>
+<p>The coastal layer has the same form, driven by tides, storm surge and sea-level rise instead of river flow. Three consequences follow. The depth refers to a cell, not a building: a site on a terrace inside the cell sees less water. It is unprotected: no levee or sea wall is included. And it measures hazard, not loss, until a depth–damage curve is applied.</p>
+</details>
+<div class="pair">
+<figure id="fig-4-3-1"><img loading="lazy" src="brazil_companion_figures/figure-4.3.1.png" alt="Flood maps of Brazil"><figcaption><strong>Figure 4.3.1.</strong> Municipal flood threat beside the deeper of river and coastal depth.</figcaption></figure>
+<figure id="fig-4-3-2"><img loading="lazy" src="brazil_companion_figures/figure-4.3.2.png" alt="Scatter of site flood depth against municipal flood threat"><figcaption><strong>Figure 4.3.2.</strong> MT1, MT5 and RN2 sit in municipalities with high flood threat but have no river or coastal depth at their coordinates. AL1, low on the index, has deep coastal water.</figcaption></figure>
+</div>
+<p>The municipal index includes flash and urban flooding, which the WRI layers do not model. A high municipal score does not establish water at a building, and a low one does not exclude it.</p>
+
+<figure id="fig-4-3-3"><img loading="lazy" src="brazil_companion_figures/figure-4.3.3.png" alt="Flood depth against return period at each flood site, baseline and future"><figcaption><strong>Figure 4.3.3.</strong> Read up from a return period to a depth, or across from a depth to how often it occurs. The credit calculation uses the second reading. The coastal curves are almost flat: common and rare floods are nearly the same depth.</figcaption></figure>
+
+<p>The depth on the site's own ground subtracts the site's height above the cell reference. The platform takes no site elevation, so priced damage and the credit results read the cell depth; the site-ground depth is a screening view.</p>
+<p class="formula">site-ground depth = max(cell depth − ground above cell, 0)</p>
+<div class="table-wrap"><table><caption>The 1-in-100-year flood, RCP8.5: depth in the model cell and on the site's ground (m). Coastal sites are also read in 2050.</caption>
+<thead><tr><th>Family</th><th>Site</th><th class="n">Ground above cell</th><th class="n">Cell 2030</th><th class="n">Cell 2080</th><th class="n">Site 2030</th><th class="n">Site 2080</th></tr></thead><tbody>
+<tr><th scope="row" rowspan="2">Coastal</th><td>AL1</td><td class="n">1.5</td><td class="n">3.03</td><td class="n">3.42</td><td class="n">1.53</td><td class="n">1.92</td></tr>
+<tr><td>BA6</td><td class="n">0.5</td><td class="n">1.02</td><td class="n">1.41</td><td class="n">0.52</td><td class="n">0.91</td></tr>
+<tr><th scope="row" rowspan="6">River</th><td>AL1</td><td class="n">1.5</td><td class="n">4.42</td><td class="n">4.74</td><td class="n">2.92</td><td class="n">3.24</td></tr>
+<tr><td>BA3</td><td class="n">1.0</td><td class="n">1.64</td><td class="n">1.87</td><td class="n">0.64</td><td class="n">0.87</td></tr>
+<tr><td>BA4</td><td class="n">2.0</td><td class="n">3.00</td><td class="n">3.33</td><td class="n">1.00</td><td class="n">1.33</td></tr>
+<tr><td>BA5</td><td class="n">7.0</td><td class="n">10.14</td><td class="n">11.25</td><td class="n">3.14</td><td class="n">4.25</td></tr>
+<tr><td>MG1</td><td class="n">4.0</td><td class="n">6.58</td><td class="n">7.72</td><td class="n">2.58</td><td class="n">3.72</td></tr>
+<tr><td>RN1</td><td class="n">0.3</td><td class="n">0.95</td><td class="n">1.11</td><td class="n">0.65</td><td class="n">0.81</td></tr>
+</tbody></table></div>
+<figure id="fig-4-3-4"><img loading="lazy" src="brazil_companion_figures/figure-4.3.4.png" alt="Flood return-period curves lowered to each site's ground"><figcaption><strong>Figure 4.3.4.</strong> The same curves lowered to each site's ground. In 2030 the 1-in-100-year flood leaves 0.52 m to 3.14 m of water on the site's ground across the eight flood exposures (seven sites, with AL1 exposed to both river and coast). The heights are synthetic; a real book would take them from a site survey.</figcaption></figure>
+
+<p><strong>How often the same flood occurs.</strong> The event is fixed as the 2030 1-in-100-year depth. Each later curve says how often that depth is then reached.</p>
+<div class="table-wrap"><table><caption>Times as often the 2030 1-in-100-year depth is reached. Coastal: 50th sea-level percentile, with the 5th–95th in brackets. “≥ 50” means the frequency is off the 2-year end of the published curve, which is a bound rather than a measurement.</caption>
+<thead><tr><th>Family</th><th>Site</th><th class="n">RCP8.5 2050</th><th class="n">RCP8.5 2080</th><th class="n">RCP4.5 2050</th><th class="n">RCP4.5 2080</th></tr></thead><tbody>
+<tr><th scope="row" rowspan="2">Coastal</th><td>AL1</td><td class="n">9.0 (5.1–19.0)</td><td class="n">≥ 50</td><td class="n">6.1 (3.7–10.9)</td><td class="n">≥ 50</td></tr>
+<tr><td>BA6</td><td class="n">8.3 (4.5–19.0)</td><td class="n">≥ 50</td><td class="n">5.6 (3.2–10.5)</td><td class="n">≥ 50</td></tr>
+<tr><th scope="row">River</th><td>six sites</td><td class="n">—</td><td class="n">1.5–2.2</td><td class="n">—</td><td class="n">—</td></tr>
+</tbody></table></div>
+<p>The ratio of 1.8 for BA3 means the old hundred-year flood now arrives about once in 56 years. The coastal range is wide because the coastal curve is flat, so a few centimetres of sea level move the frequency a long way. Frequency does not depend on the site's elevation, because subtracting a fixed height lowers the whole curve without changing how often a given flood arrives. The credit calculation can therefore read the cell curve directly.</p>
+
+<h3 id="heat">Heat</h3>
+<p>The heat indicators are chronic. Each shifts the site's normal year rather than arriving as a shock, and each describes the air or river around a site on an 11–55 km grid, not conditions inside a building.</p>
+<div class="table-wrap"><table><thead><tr><th>Indicator</th><th>What it measures</th><th>Used for</th></tr></thead><tbody>
+<tr><th scope="row">Cooling degree days</th><td>Sum over the year of daily mean temperature above a base (18 °C for buildings), in °C·day</td><td>The office's cooling bill</td></tr>
+<tr><th scope="row">Days above a WBGT threshold</th><td>Days a year the wet-bulb globe temperature, which combines heat and humidity, exceeds a limit. Near 30 °C heavy outdoor work has to stop.</td><td>Working time lost at the mills</td></tr>
+<tr><th scope="row">Degree days above 32 °C</th><td>Heat accumulated above 32 °C, in °C·day</td><td>Working time lost at industrial sites</td></tr>
+<tr><th scope="row">Mean work loss, low, medium and high intensity</th><td>Share of a year's work capacity lost to heat for light, moderate and heavy work. The model floors work ability at 10%, so the loss cannot exceed 0.9.</td><td>Weights moderate and light work at producing sites</td></tr>
+<tr><th scope="row">Weeks of warm water</th><td>Weeks a year river water exceeds 30 °C, the water a plant would draw for cooling</td><td>Not priced</td></tr>
+</tbody></table></div>
+<div class="pair">
+<figure id="fig-4-4-1"><img loading="lazy" src="brazil_companion_figures/figure-4.4.1.png" alt="Heat maps of Brazil"><figcaption><strong>Figure 4.4.1.</strong> Municipal heat-wave counts beside site cooling degree days.</figcaption></figure>
+<figure id="fig-4-4-2"><img loading="lazy" src="brazil_companion_figures/figure-4.4.2.png" alt="Scatter of site cooling degree days against municipal heat-wave index"><figcaption><strong>Figure 4.4.2.</strong> By 2050 the municipal index is near its maximum at every site and no longer tells them apart. Cooling degree days still do.</figcaption></figure>
+</div>
+<figure id="fig-4-4-3"><img loading="lazy" src="brazil_companion_figures/figure-4.4.3.png" alt="Heat indicators at each site from the baseline to 2050"><figcaption><strong>Figure 4.4.3.</strong> Every compared slice is hotter than the baseline. The two pathways barely separate at 2030 and do so clearly by 2050. Heavy-work loss changes little at the hottest sites because it is already near the model's ceiling; moderate and light work still rise.</figcaption></figure>
+<p><strong>Warm river water.</strong> Weeks above 30 °C rise under both pathways, faster under RCP8.5. By 2080 under RCP8.5 the sites spend 23 to 51 weeks a year above the threshold: RN1 rises from 36 to 51 weeks, MT5 from 25 to 50, and MG1 from 5 to 24. The threshold is 30 °C rather than the more common 25 °C intake limit because most sites are already above 25 °C almost all year at the baseline, which leaves no room to show change.</p>
+
+<h3 id="coast">Coastal flood</h3>
+<p>AL1 and BA6 have coastal readings. The central (50th percentile) sea-level estimate is the headline. The 5th and 95th percentiles give the published range, and a subsidence variant also lowers the land.</p>
+<div class="pair">
+<figure id="fig-4-5-1"><img loading="lazy" src="brazil_companion_figures/figure-4.5.1.png" alt="Depth added by sea-level rise at the coastal sites with percentile range"><figcaption><strong>Figure 4.5.1.</strong> By 2080 under RCP8.5, sea-level rise adds about 0.52 m at both sites. The 5th–95th range spans 0.34 m at AL1 and 0.40 m at BA6, close to the rise itself, so the percentile chosen matters as much as the pathway.</figcaption></figure>
+<figure id="fig-4-5-2"><img loading="lazy" src="brazil_companion_figures/figure-4.5.2.png" alt="Depth added by land subsidence at the coastal sites"><figcaption><strong>Figure 4.5.2.</strong> Subsidence adds at most 0.06 m at AL1 and nothing at BA6. This is a difference between modelled layers, not a site survey.</figcaption></figure>
+</div>
+<figure id="fig-4-5-3"><img loading="lazy" src="brazil_companion_figures/figure-4.5.3.png" alt="Observed depth plus sea-level rise and subsidence against the site's ground"><figcaption><strong>Figure 4.5.3.</strong> Combined depth against the site's ground, both measured from the cell reference. AL1's ground, 1.5 m above the reference, and BA6's, at 0.5 m, are under water at every horizon.</figcaption></figure>
+</section>
+
+<section id="money">
+<h2>Which impacts become money</h2>
+<p>A hazard becomes a monetary amount through a vulnerability model. The model turns the hazard's intensity at a site into a damage fraction, lost working time or extra kWh, which is then multiplied by the site's value, labour cost or tariff. Each model is built on one hazard indicator, with its own variable, unit, reference level and period, and must be fed that indicator: a damage curve read on water depth in metres cannot take a municipal threat index. Where no model matches, the hazard is <em>not priced</em>, which does not mean zero loss. Every amount is a change over a baseline specific to its source.</p>
+
+<h3 id="flood-money">Flood</h3>
+<p><strong>Expected annual river damage.</strong> The river estimates use the depth in the model cell. Expected annual damage is R$ 19.5 M a year across the six river sites in 2030 and R$ 22.4 M in 2080, <strong>a change of +R$ 2.86 M</strong>. Damage rises at every site, in line with the higher HadGEM2-ES depths. MG1 carries the most, rising from R$ 7.06 M to R$ 8.36 M a year.</p>
+<div class="pair">
+<figure id="fig-5-3-1"><img loading="lazy" src="brazil_companion_figures/figure-5.3.1.png" alt="Expected annual river damage per site in 2030 and 2080"><figcaption><strong>Figure 5.3.1.</strong> Expected annual river damage by site, 2030 and 2080.</figcaption></figure>
+<figure id="fig-5-3-2"><img loading="lazy" src="brazil_companion_figures/figure-5.3.2.png" alt="River damage value at risk by site"><figcaption><strong>Figure 5.3.2.</strong> Value at risk of the estimated river damage distribution, per site in 2080.</figcaption></figure>
+</div>
+
+<p><strong>Coastal damage.</strong> From 2030 to 2050, expected annual damage rises by R$ 6.13 M at BA6 (from R$ 10.85 M to R$ 16.98 M) and by R$ 0.57 M at AL1 (from R$ 19.31 M to R$ 19.88 M), <strong>+R$ 6.71 M in total</strong>. AL1's damage fraction is already about 22% in 2030 because its site is under water at every horizon, which leaves little room to rise. By 2080 the two sites reach R$ 20.9 M and R$ 20.3 M.</p>
+<div class="pair">
+<figure id="fig-5-5-1"><img loading="lazy" src="brazil_companion_figures/figure-5.5.1.png" alt="Expected annual coastal damage per site"><figcaption><strong>Figure 5.5.1.</strong> Expected annual coastal damage at AL1 and BA6. The estimate combines the coastal processes and does not price sea-level rise and subsidence separately.</figcaption></figure>
+<figure id="fig-5-5-2"><img loading="lazy" src="brazil_companion_figures/figure-5.5.2.png" alt="Coastal damage value at risk by site"><figcaption><strong>Figure 5.5.2.</strong> Value at risk of the coastal damage distribution, per site in 2080.</figcaption></figure>
+</div>
+
+<h3 id="heat-money">Heat</h3>
+<p>Only the heat added over the historical baseline is priced, since baseline heat is already reflected in today's operations. Heat costs more working time the harder the work, since the body must shed the heat it produces as well as the heat around it. Occupational limits are set on WBGT by metabolic rate (ISO 7243), and the work-ability functions behind global estimates (Kjellstrom et al., 2018; ILO, 2019) assign about 400 W to heavy work such as field labour and manual loading, 300 W to moderate work such as running machines on a factory floor, and 200 W to light work such as office jobs. At the same WBGT heavy work loses capacity first and fastest; light work in an air-conditioned room loses almost none.</p>
+<p>Lost working time is valued at 12% of revenue (the illustrative labour-cost share). The platform prices a site's whole working year as heavy work, so each producing site splits its revenue across heavy, moderate and light work exposed to heat, with the rest not exposed; moderate and light work count at the site's work loss for that intensity over its loss for heavy work. The office's extra cooling demand is priced at 80 kWh per m² a year today and R$ 0.85 per kWh.</p>
+<p><strong>Working time.</strong> By 2050 under SSP5-8.5 the three mills lose an extra 5.0–9.4% of working hours (BA5, BA3, RN1). The industrial sites lose 0.15–2.1%. The mills use a WBGT model and the industrial sites a degree-day model, so the two sets of figures are not directly comparable.</p>
+<p><strong>In reais.</strong> Producing sites lose <strong>R$ 9.26 M a year by 2050</strong>, 0.53% of their revenue, and 94% of that is at the three mills (RN1 R$ 3.39 M, BA3 R$ 3.36 M). The 2030 figure is a little over a third of it. The office's cooling bill rises from R$ 0.54 M to R$ 0.93 M a year, <strong>+R$ 0.38 M</strong> (+70%, R$ 47.9 per m²). These are annual amounts in each climate slice, not cumulative losses.</p>
+<figure id="fig-5-4-1"><img loading="lazy" src="brazil_companion_figures/figure-5.4.1.png" alt="Added heat cost by asset class and horizon"><figcaption><strong>Figure 5.4.1.</strong> Added annual heat cost by asset class and horizon: productivity loss at the industrial sites and mills, weighted by each site's work mix, and cooling energy at the office. The mills carry most of it.</figcaption></figure>
+
+<h3 id="compare">Priced impacts side by side</h3>
+<figure id="fig-5-6-1"><img loading="lazy" src="brazil_companion_figures/figure-5.6.1.png" alt="Bar chart of annual loss added by each hazard and channel"><figcaption><strong>Figure 5.6.1.</strong> Heat productivity loss (R$ 9.3 M, 9 sites) is the largest added amount, ahead of coastal damage (R$ 6.7 M, 2 sites), river damage (R$ 2.9 M, 6 sites) and office cooling (R$ 0.4 M). The bars compare magnitudes only: heat is 2050 against 2005, coast 2050 against 2030, and river 2080 against 2030.</figcaption></figure>
+</section>
+
+<section id="portfolio">
+<h2>Portfolio aggregation</h2>
+<p>The platform's portfolio service runs its own risk analysis on the ten sites, groups those that one event can hit together, and aggregates their losses into a single distribution. It uses its own hazard set and scenario labels, so its totals are not comparable with the site amounts above, and they do not feed the CRFR2 report or the credit results.</p>
+<p>Each hazard is clustered with its own spatial method. Sites in one cluster share events, so their losses are aggregated together, while a site alone in its cluster is treated as independent; this is why a portfolio tail is not the sum of site tails. The metrics summarise the portfolio's annual loss: expected loss is its mean, value-at-risk the loss exceeded only with a percentile's small probability, and expected shortfall the average loss beyond it. The scenario labels are narratives, and where a hazard has no series for one the platform uses the closest pathway, which is why SSP1-2.6 and SSP2-4.5 give identical values.</p>
+<p>The six clusters are BA3 with BA4 (R$ 452.5 M), MT1 with MT5 (R$ 397.0 M), RN1 with RN2 (R$ 279.0 M), BA5 with BA6 (R$ 248.0 M), and MG1 and AL1 on their own. Under SSP5-8.5, combined expected annual loss rises from R$ 44.5 M (historical) to R$ 52.8 M in 2050 and R$ 55.3 M in 2080. The largest published value-at-risk rises from R$ 182.8 M to R$ 198.0 M.</p>
+<figure id="fig-6-1-1"><img loading="lazy" src="brazil_companion_figures/figure-6.1.1.png" alt="Map of portfolio clusters"><figcaption><strong>Figure 6.1.1.</strong> The clusters of the combined hazard footprint.</figcaption></figure>
+<div class="pair">
+<figure id="fig-6-2-1"><img loading="lazy" src="brazil_companion_figures/figure-6.2.1.png" alt="Portfolio value-at-risk by percentile and scenario"><figcaption><strong>Figure 6.2.1.</strong> Portfolio value-at-risk by percentile and scenario.</figcaption></figure>
+<figure id="fig-6-2-2"><img loading="lazy" src="brazil_companion_figures/figure-6.2.2.png" alt="Portfolio expected shortfall by percentile and scenario"><figcaption><strong>Figure 6.2.2.</strong> Portfolio expected shortfall, the average loss beyond each percentile.</figcaption></figure>
+</div>
+</section>
+
+<section id="credit">
+<h2>Flood and the loans</h2>
+<h3>The bridge from flood frequency to capital</h3>
+<p>The event is the 2030 1-in-100-year depth on each site's curve, so its baseline chance is 1% a year by construction. Reading the same depth on a later curve gives its new annual chance <em>q</em>. PD then scales with the frequency ratio at the flood elasticity from BIS Working Paper 1274:</p>
+<p class="formula">PD / PD₀ = 1 + 0.134 × (q / q₀ − 1)</p>
+<p>Today's PD is assumed to reflect today's climate. Site ratios are weighted by collateral value to give a borrower figure. Each borrower is assessed on one flood family (river or coast, whichever moves RWA more), and the two are not added. A frequency off the published 2–1,000-year curve is a bound and is not priced. Heat does not enter.</p>
+<p>Expected loss and Basel IRB risk-weighted assets are computed for two LGD cases. <em>LGD unchanged</em> assumes the flood never reaches the recoverable assets. <em>LGD at 40%</em>, Basel's senior unsecured value, assumes the collateral stops counting. Neither case is a forecast of recoveries. RWA uses the exact binary mixture of a normal state and a flood state. The paper's first-order formula differs from it by −2.2% to +4.5%.</p>
+
+<h3>2050: the two coastal borrowers</h3>
+<p>Only the coast has a priced 2050 frequency, where the event occurs 8–9 times as often. PD roughly doubles for C03 and C04.</p>
+<div class="table-wrap"><table><caption>RCP8.5 2050, coast at the 50th sea-level percentile. R$ M.</caption>
+<thead><tr><th>Borrower</th><th class="n">Times as often</th><th class="n">PD now → 2050 (%)</th><th class="n">EL now → 2050</th><th class="n">RWA change, LGD unchanged</th><th class="n">RWA change, LGD 40%</th></tr></thead><tbody>
+<tr><th scope="row">C03 (AL1)</th><td class="n">9.0</td><td class="n">3.32 → 6.89</td><td class="n">1.36 → 2.82</td><td class="n">+10.1%</td><td class="n">+15.4%</td></tr>
+<tr><th scope="row">C04 (BA6)</th><td class="n">8.3</td><td class="n">5.98 → 11.83</td><td class="n">2.44 → 4.82</td><td class="n">−1.4%</td><td class="n">+3.1%</td></tr>
+<tr><th scope="row">Book, 2 of 6 borrowers</th><td class="n">—</td><td class="n">EAD 314.5</td><td class="n">3.8 → 7.6</td><td class="n"><strong>+4.00%</strong></td><td class="n"><strong>+8.85%</strong></td></tr>
+</tbody></table></div>
+<p>C04's RWA falls with LGD unchanged even though its PD doubles. This is a property of the binary-mixture capital formula, so borrower and book results should be read separately. C01, C05 and C06 (R$ 472.5 M of EAD) have no flood family compared in 2050. C02 (R$ 259.2 M) has no flood curve at all. Only one of today's twelve loans, C05's term loan, is still running in 2050.</p>
+<p><strong>Sensitivities.</strong> Reading the coast at the 5th sea-level percentile gives +3.01% / +5.69%, and at the 95th +6.05% / +16.94%. RCP4.5 gives +3.22% / +6.47%.</p>
+<div class="pair">
+<figure id="fig-7-1-1"><img loading="lazy" src="brazil_companion_figures/figure-7.1.1.png" alt="Flood frequency and PD change, 2050"><figcaption><strong>Figure 7.1.1.</strong> 2050: the event's annual chance at each coastal site, and each borrower's PD before and after.</figcaption></figure>
+<figure id="fig-7-2-1"><img loading="lazy" src="brazil_companion_figures/figure-7.2.1.png" alt="RWA change by borrower and across return periods, 2050"><figcaption><strong>Figure 7.2.1.</strong> 2050 RWA change. Panel (b) shows that a more common material event gives a much larger uplift: roughly +26% to +50% at a 1-in-20-year event, against +4% to +9% at 1-in-100.</figcaption></figure>
+</div>
+
+<h3>2080: the five river borrowers</h3>
+<p>By 2080 the coastal frequency is off the published curve and is not priced, so the total is river only. At borrower level river floods come 1.6–2.0 times as often, and PD rises by 8–13%.</p>
+<div class="table-wrap"><table><caption>RCP8.5 2080, river on HadGEM2-ES. R$ M.</caption>
+<thead><tr><th>Borrower</th><th class="n">Times as often</th><th class="n">PD now → 2080 (%)</th><th class="n">RWA change, LGD unchanged</th><th class="n">RWA change, LGD 40%</th></tr></thead><tbody>
+<tr><th scope="row">C01</th><td class="n">1.79</td><td class="n">1.85 → 2.04</td><td class="n">+2.84%</td><td class="n">+3.82%</td></tr>
+<tr><th scope="row">C03</th><td class="n">1.95</td><td class="n">3.32 → 3.75</td><td class="n">+2.42%</td><td class="n">+3.48%</td></tr>
+<tr><th scope="row">C05</th><td class="n">1.78</td><td class="n">3.32 → 3.67</td><td class="n">+2.16%</td><td class="n">+3.30%</td></tr>
+<tr><th scope="row">C04</th><td class="n">1.85</td><td class="n">5.98 → 6.66</td><td class="n">+1.15%</td><td class="n">+2.17%</td></tr>
+<tr><th scope="row">C06</th><td class="n">1.63</td><td class="n">8.80 → 9.54</td><td class="n">+0.32%</td><td class="n">+1.21%</td></tr>
+<tr><th scope="row">Book, 5 of 6 borrowers</th><td class="n">—</td><td class="n">EAD 787.0; EL 8.2 → 9.0</td><td class="n"><strong>+1.93%</strong></td><td class="n"><strong>+2.96%</strong></td></tr>
+</tbody></table></div>
+<p>RCP4.5 has nothing inside the published curve in 2080. None of today's loans is still running.</p>
+<div class="pair">
+<figure id="fig-7-1-2"><img loading="lazy" src="brazil_companion_figures/figure-7.1.2.png" alt="Flood frequency and PD change, 2080"><figcaption><strong>Figure 7.1.2.</strong> 2080: the coastal sites reach the end of their curve, drawn at its 50% cap, and drop out of the PD panel. The river borrowers carry the result.</figcaption></figure>
+<figure id="fig-7-2-2"><img loading="lazy" src="brazil_companion_figures/figure-7.2.2.png" alt="RWA change by borrower and across return periods, 2080"><figcaption><strong>Figure 7.2.2.</strong> 2080 RWA change by borrower. A 1-in-20-year material event would give about +3% to +7% for the book.</figcaption></figure>
+</div>
+<div class="callout"><strong>Different denominators.</strong> The 2050 total covers two coastal borrowers and R$ 314.5 M of EAD. The 2080 total covers five river borrowers and R$ 787.0 M. The lower 2080 percentage does not mean risk falls over time.</div>
+
+<h3 id="vintages">Loans written later</h3>
+<p>Most of today's loans mature long before 2050, but a bank financing these sites will keep lending to them: seasonal lines are rolled and term loans replaced. The exercise therefore writes each of today's loans again in 2040, 2050 and 2080 on identical terms, so that only the climate each loan meets changes. In each year of a loan's life, the flood ratio is interpolated linearly between the compared years and held at the last priced year after that; it is not extrapolated. The change in expected loss is averaged over the loan's life, weighted by the balance still outstanding. Term loans repay in equal yearly instalments.</p>
+<div class="table-wrap"><table><caption>The book written in each year: flood effect on lifetime expected loss (loans with a flood curve, 75% of EAD), and annual heat productivity loss at the borrowers' sites.</caption>
+<thead><tr><th>Written in</th><th class="n">EL change from flood</th><th>Largest single loan</th><th class="n">Today's loans still running</th><th class="n">Heat loss (R$ M a year)</th></tr></thead><tbody>
+<tr><th scope="row">2028 (today)</th><td class="n">+5.3%</td><td>C03 term loan, +24.8%</td><td class="n">12 of 12</td><td class="n">5.2</td></tr>
+<tr><th scope="row">2040</th><td class="n">+32.1%</td><td>C03 term loan, +83.5%</td><td class="n">3 of 12</td><td class="n">8.2</td></tr>
+<tr><th scope="row">2050</th><td class="n">+49.5%</td><td>C03 seasonal line, +107.4%</td><td class="n">1 of 12</td><td class="n">9.3</td></tr>
+<tr><th scope="row">2080</th><td class="n">+52.2%</td><td>C03 seasonal line, +107.4%</td><td class="n">0 of 12</td><td class="n">9.3</td></tr>
+</tbody></table></div>
+<p>Each percentage is relative to that vintage's own baseline expected loss. The coastal loans of C03 and C04 are held at their 2050 frequency, so their later vintages are understated. Heat after 2050 repeats the 2050 value, so the 2080 heat column is not a fresh projection. The heat loss is concentrated at C05 (R$ 3.4 M a year by the 2050 vintage), C01 and C04, up to about 0.5% of their revenue.</p>
+
+<h3>What the credit results leave out</h3>
+<p>The credit results cover one flood family per borrower, and only sites with a supported frequency curve. They exclude heat, early default and discounting, and they assume nothing between the two LGD cases. The PD elasticity is a literature value, not a bank calibration. The platform documentation describes output of this kind as screening grade: an input to a disclosure, with calibrated vulnerability, model validation and sign-off remaining with the bank.</p>
+</section>
+
+<section id="results">
+<h2>Results</h2>
+<div class="table-wrap"><table><thead><tr><th>Result</th><th>Value</th><th>Read in</th></tr></thead><tbody>
+<tr><th scope="row">Book</th><td>6 borrowers, 12 loans, 10 sites; R$ 971 M drawn against R$ 1,618 M of collateral</td><td><a href="#book">The book</a></td></tr>
+<tr><th scope="row">Exposure filed in another macro-region at <em>Nível 1</em></th><td>R$ 290.4 M, 30% of the book (C02, C03)</td><td><a href="#crfr2">CRFR2</a></td></tr>
+<tr><th scope="row">CRFR2 cells that change class</th><td>15 (9 within a region, 6 moved region)</td><td><a href="#crfr2">CRFR2</a></td></tr>
+<tr><th scope="row">Hundred-year flood on the sites' ground, 2030</th><td>0.52 m to 3.14 m across 8 flood exposures</td><td><a href="#flood">Flood</a></td></tr>
+<tr><th scope="row">Flood frequency change, RCP8.5</th><td>River 1.5–2.2× by 2080; coast 8–9× by 2050, off the curve by 2080</td><td><a href="#flood">Flood</a></td></tr>
+<tr><th scope="row">Heat productivity loss added, SSP5-8.5 2050</th><td>R$ 9.26 M a year, 0.53% of the sites' revenue</td><td><a href="#heat-money">Heat</a></td></tr>
+<tr><th scope="row">Office cooling cost added, SSP5-8.5 2050</th><td>R$ 0.38 M a year, 70% above the baseline bill</td><td><a href="#heat-money">Heat</a></td></tr>
+<tr><th scope="row">Coastal flood damage added, 2030 → 2050</th><td>+R$ 6.71 M a year (2 sites)</td><td><a href="#flood-money">Flood</a></td></tr>
+<tr><th scope="row">River flood damage added, 2030 → 2080</th><td>+R$ 2.86 M a year (6 sites)</td><td><a href="#flood-money">Flood</a></td></tr>
+<tr><th scope="row">Book RWA change, RCP8.5 2050</th><td>+4.00% (LGD unchanged) to +8.85% (LGD 40%), 2 of 6 borrowers</td><td><a href="#credit">Credit</a></td></tr>
+<tr><th scope="row">Book RWA change, RCP8.5 2080</th><td>+1.93% to +2.96%, 5 of 6 borrowers</td><td><a href="#credit">Credit</a></td></tr>
+<tr><th scope="row">Lifetime EL change from flood, by vintage</th><td>+5.3% (2028), +32.1% (2040), +49.5% (2050), +52.2% (2080)</td><td><a href="#vintages">Vintages</a></td></tr>
+<tr><th scope="row">Heat loss over the term loan, by vintage</th><td>R$ 5.2 M a year (2028), 8.2 (2040), 9.3 (2050 and 2080)</td><td><a href="#vintages">Vintages</a></td></tr>
+</tbody></table></div>
+<h3>How to read them</h3>
+<ul>
+<li><strong>Reporting location matters.</strong> Moving from headquarters to sites reclassifies a third of the book by region and lowers intense-rain threat everywhere, without changing total lending.</li>
+<li><strong>Municipal indices and site readings disagree.</strong> Sites in high flood-threat municipalities can be dry at their coordinates, and a low-threat municipality can hold the deepest coastal water in the book.</li>
+<li><strong>Heat is the largest priced amount,</strong> concentrated in three labour-intensive mills. The office bill is a separate, smaller cost.</li>
+<li><strong>Flood reaches capital through frequency, not damage.</strong> The RWA effect is modest for the book but large for individual coastal borrowers, and it grows sharply if the material event is set at a more common return period.</li>
+<li><strong>Later loans meet more of the changed climate.</strong> The same loan written in 2080 carries about ten times today's lifetime flood effect on expected loss.</li>
+</ul>
+</section>
+
+<section id="sources">
+<h2>Sources and methods</h2>
+<ol class="references">
+<li>Alpha-Klima platform: <a href="https://platform.alpha-klima.com/docs/advanced/methodology/index.html">methodology</a>, <a href="https://platform.alpha-klima.com/docs/advanced/datasets/hazards.html">hazard datasets</a>, <a href="https://platform.alpha-klima.com/docs/advanced/datasets/vulnerability.html">vulnerability models</a>, <a href="https://platform.alpha-klima.com/docs/advanced/methodology/scenarios.html">climate scenarios</a>, <a href="https://platform.alpha-klima.com/docs/advanced/methodology/key-concepts.html#aggregation-and-dependence">aggregation and dependence</a> and <a href="https://platform.alpha-klima.com/docs/advanced/methodology/regulatory.html#screening-versus-submission">screening versus submission</a> (login required).</li>
+<li>AdaptaBrasil: <a href="https://adaptabrasil.mcti.gov.br/sobre/metodologia">methodology</a>, <a href="https://adaptabrasil.mcti.gov.br/sobre/lista-de-indicadores">indicator list</a> and <a href="https://github.com/AdaptaBrasil/AdaptaBrasilAPIAccess">API</a>. CRFR2 layouts: BCB, <em>Leiautes do Relatório GRSAC</em> (IN BCB nº 772).</li>
+<li>WRI, <a href="https://www.wri.org/research/aqueduct-floods-methodology"><em>Aqueduct Floods Methodology</em></a> (2020), for river and coastal depths.</li>
+<li>Vicente-Serrano et al. (2010), SPEI, <a href="https://spei.csic.es/">spei.csic.es</a>; Muñoz-Sabater et al. (2021), <a href="https://essd.copernicus.org/articles/13/4349/2021/"><em>ERA5-Land</em></a>, ESSD 13.</li>
+<li>Neidell et al. (2021), <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254224"><em>Temperature and work</em></a>, PLOS ONE, for the industrial heat response.</li>
+<li>Scussolini et al. (2016), <a href="https://nhess.copernicus.org/articles/16/1049/2016/"><em>FLOPROS</em></a>, NHESS 16, for flood-protection standards.</li>
+<li><a href="https://www.bis.org/publ/work1274.htm">BIS Working Paper 1274</a> for the climate-credit bridge; Basel Framework <a href="https://www.bis.org/basel_framework/chapter/CRE/20.htm">CRE20</a>, <a href="https://www.bis.org/basel_framework/chapter/CRE/31.htm">CRE31</a> and <a href="https://www.bis.org/basel_framework/chapter/CRE/32.htm">CRE32</a> for IRB capital, credit conversion and LGD.</li>
+<li><a href="https://github.com/os-climate/hazard">OS-Climate hazard inventory</a> for dataset identifiers.</li>
+</ol>
+</section>
+</main>
+<script>
+(() => {
+  const links = new Map([...document.querySelectorAll('.tabs a')].map(a => [a.hash.slice(1), a]));
+  const bar = document.querySelector('.tabs ul');
+  const mark = id => links.forEach((a, key) => {
+    const on = key === id;
+    if (!on) return a.removeAttribute('aria-current');
+    a.setAttribute('aria-current', 'true');
+    bar.scrollTo({left: a.offsetLeft - bar.offsetLeft - 16, behavior: 'smooth'});
+  });
+  const seen = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && mark(e.target.id)),
+                                        {rootMargin: '-45% 0px -50% 0px'});
+  links.forEach((a, id) => { const section = document.getElementById(id); if (section) seen.observe(section); });
+  let closed = [];
+  addEventListener('beforeprint', () => { closed = [...document.querySelectorAll('details:not([open])')]; closed.forEach(d => d.open = true); });
+  addEventListener('afterprint', () => closed.forEach(d => d.open = false));
+})();
+</script>
+</body>
+</html>
