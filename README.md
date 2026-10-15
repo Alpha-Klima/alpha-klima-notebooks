@@ -15,6 +15,10 @@ The public notebooks are organized by workflow area:
 |  | [`03_waste_facility_multihazard_screening.ipynb`](notebooks/02_portfolio_workflows/03_waste_facility_multihazard_screening.ipynb) | Multi-hazard screening then flood, wind, and heat pricing for EU waste facilities. |
 | `03_regulatory_reporting/` | [`01_bank_pillar3_pipeline.ipynb`](notebooks/03_regulatory_reporting/01_bank_pillar3_pipeline.ipynb) | Bank pipeline run producing Pillar 3 and ECB physical-risk indicators. |
 | `04_methodology_research/` | [`01_postal_code_hazard_screening.ipynb`](notebooks/04_methodology_research/01_postal_code_hazard_screening.ipynb) | Postal-code level hazard screening for Spain. |
+| `99_case_studies/` | [`brazil_econometrics.ipynb`](notebooks/99_case_studies/brazil_econometrics.ipynb) | Physical climate risk in a Brazilian credit book, from financed sites to credit outcomes. |
+|  | [`el_nino_coffee_stress_test.ipynb`](notebooks/99_case_studies/el_nino_coffee_stress_test.ipynb) | El Niño stress test on a coffee supply chain from Rondônia, Brazil, to California. |
+
+The case studies in `99_case_studies/` are static versions: their figures and tables were produced with code and data that are not in this repository, so they cannot be run from here.
 
 **New to the API?** Start here:
 1. [`01_hazard_data_api_basics.ipynb`](notebooks/01_api_fundamentals/01_hazard_data_api_basics.ipynb): Requesting, transforming, and visualizing point-level hazard data — the simplest path to a first successful API call and a visual result.
